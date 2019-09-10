@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shape:</strong>
+  <%= @pizza.shape_id %>
+</p>
+
+<p>
+  <strong>Sauce:</strong>
+  <%= @pizza.sauce_id %>
+</p>
+
+<p>
+  <strong>Flavor:</strong>
+  <%= @pizza.flavor_id %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @pizza.size_id %>
+</p>
+
+<p>
+  <strong>Total prices:</strong>
+  <%= @pizza.total_prices %>
+</p>
+
+<%= link_to 'Edit', edit_pizza_path(@pizza) %> |
+<%= link_to 'Back', pizzas_path %>

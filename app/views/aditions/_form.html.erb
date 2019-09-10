@@ -1,0 +1,27 @@
+<%= form_with(model: adition, local: true) do |form| %>
+  <% if adition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(adition.errors.count, "error") %> prohibited this adition from being saved:</h2>
+
+      <ul>
+        <% adition.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :pizza_id %>
+    <%= form.text_field :pizza_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ingredient_id %>
+    <%= form.text_field :ingredient_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Aditions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pizza</th>
+      <th>Ingredient</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @aditions.each do |adition| %>
+      <tr>
+        <td><%= adition.pizza_id %></td>
+        <td><%= adition.ingredient_id %></td>
+        <td><%= link_to 'Show', adition %></td>
+        <td><%= link_to 'Edit', edit_adition_path(adition) %></td>
+        <td><%= link_to 'Destroy', adition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adition', new_adition_path %>

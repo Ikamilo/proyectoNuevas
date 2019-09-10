@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-  root 'login#index'
-  post "login" => "login#create"
-  resources :shareds
-  resources :comments
-  resources :categories do
-    resources :posts
-  end
-  resources :posts
-  resources :users do
-    resources :posts
-  end
+  resources :pizzas
+  resources :flavors
+  resources :sizes
+  resources :sauces
+  resources :aditions
+  resources :ingredients
+  resources :shapes
+  resources :users
+
+  root "users#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

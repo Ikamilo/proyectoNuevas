@@ -1,0 +1,48 @@
+<%= form_with(model: pizza, local: true) do |form| %>
+  <% if pizza.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pizza.errors.count, "error") %> prohibited this pizza from being saved:</h2>
+
+      <ul>
+        <% pizza.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :shape_id %>
+    <%= form.text_field :shape_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sauce_id %>
+    <%= form.text_field :sauce_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flavor_id %>
+    <%= form.text_field :flavor_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :size_id %>
+    <%= form.text_field :size_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_price %>
+    <%= form.text_field :total_prices %>
+<!--    <%= form.text_field :total_prices, :readonly => true, :input_html => { :value => $price }, placeholder: $price%>-->
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

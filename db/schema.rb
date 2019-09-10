@@ -10,43 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_010406) do
+ActiveRecord::Schema.define(version: 2019_09_10_203935) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "aditions", force: :cascade do |t|
+    t.integer "pizza_id", null: false
+    t.integer "ingredient_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_aditions_on_ingredient_id"
+    t.index ["pizza_id"], name: "index_aditions_on_pizza_id"
+  end
+
+  create_table "flavors", force: :cascade do |t|
     t.string "name"
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
-    t.string "text"
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "pizzas", force: :cascade do |t|
+    t.integer "shape_id", null: false
+    t.integer "sauce_id", null: false
+    t.integer "flavor_id", null: false
+    t.integer "size_id", null: false
     t.integer "user_id", null: false
-    t.integer "category_id", null: false
-    t.date "date"
-    t.string "text"
+    t.float "total_prices"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_posts_on_category_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["flavor_id"], name: "index_pizzas_on_flavor_id"
+    t.index ["sauce_id"], name: "index_pizzas_on_sauce_id"
+    t.index ["shape_id"], name: "index_pizzas_on_shape_id"
+    t.index ["size_id"], name: "index_pizzas_on_size_id"
+    t.index ["user_id"], name: "index_pizzas_on_user_id"
   end
 
-  create_table "shareds", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "text"
-    t.integer "post_id", null: false
+  create_table "sauces", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_shareds_on_post_id"
-    t.index ["user_id"], name: "index_shareds_on_user_id"
+  end
+
+  create_table "shapes", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sizes", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,10 +80,11 @@ ActiveRecord::Schema.define(version: 2019_09_06_010406) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
-  add_foreign_key "posts", "categories"
-  add_foreign_key "posts", "users"
-  add_foreign_key "shareds", "posts"
-  add_foreign_key "shareds", "users"
+  add_foreign_key "aditions", "ingredients"
+  add_foreign_key "aditions", "pizzas"
+  add_foreign_key "pizzas", "flavors"
+  add_foreign_key "pizzas", "sauces"
+  add_foreign_key "pizzas", "shapes"
+  add_foreign_key "pizzas", "sizes"
+  add_foreign_key "pizzas", "users"
 end
