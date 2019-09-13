@@ -4,12 +4,17 @@ class AditionsController < ApplicationController
   # GET /aditions
   # GET /aditions.json
   def index
-    @aditions = Adition.all
+    @aditions = Adition.pz_ing
+    #@aditions = Adition.all
   end
 
   # GET /aditions/1
   # GET /aditions/1.json
   def show
+    pizza = Pizza.find_by(id: $pz)
+    precio_ingrediente = Ingredient.find_by(id: Adition.find_by(id: params[:id]).ingredient_id).price
+    pizza.update(total_prices: pizza.total_prices + precio_ingrediente)
+    redirect_to "/users/#{$us}/pizzas/#{$pz}/aditions/new"
   end
 
   # GET /aditions/new

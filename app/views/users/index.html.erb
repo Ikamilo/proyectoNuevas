@@ -1,4 +1,24 @@
 <p id="notice"><%= notice %></p>
+<%= @aviso %>
+<%= form_tag(users_path, method: :get) do %>
+<div>
+  <%= label_tag :login %>
+  <%= text_field_tag :login_email, params[:login_email] %>
+</div>
+
+<div>
+  <%= label_tag :password %>
+  <%= text_field_tag :login_password, params[:login_password] %>
+</div>
+
+<div>
+  <%= submit_tag 'Login', name: nil %>
+</div>
+<% end %>
+<br>
+<%= link_to 'New User', new_user_path %>
+<!--
+<p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
 
@@ -7,7 +27,7 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Name</th>
+      <th>Password</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +37,7 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.name %></td>
+        <td><%= user.password %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,3 +49,4 @@
 <br>
 
 <%= link_to 'New User', new_user_path %>
+-->

@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Pizzas</h1>
 
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Shape</th>
       <th>Sauce</th>
       <th>Flavor</th>
@@ -17,13 +17,19 @@
   <tbody>
     <% @pizzas.each do |pizza| %>
       <tr>
-        <td><%= pizza.shape_id %></td>
-        <td><%= pizza.sauce_id %></td>
-        <td><%= pizza.flavor_id %></td>
-        <td><%= pizza.size_id %></td>
+        <td><%= pizza.id %></td> 
+        <td><%= Shape.find_by(id: pizza.shape_id).name %></td> 
+        <!--<td><%= pizza.shape_id %></td>-->
+        <td><%= Sauce.find_by(id: pizza.sauce_id).name %></td> 
+        <!--<td><%= pizza.sauce_id %></td>-->
+        <td><%= Flavor.find_by(id: pizza.flavor_id).name %></td> 
+        <!--<td><%= pizza.flavor_id %></td>-->
+        <td><%= Size.find_by(id: pizza.size_id).name %></td> 
+        <!--<td><%= pizza.size_id %></td>-->
         <td><%= pizza.total_prices %></td>
-        <td><%= link_to 'Show', pizza %></td>
-        <td><%= link_to 'Edit', edit_pizza_path(pizza) %></td>
+        <% $pz = pizza.id %>
+        <td><%= link_to 'Ver ingredientes', "/users/#{$us}/pizzas/#{$pz}/aditions" %></td>
+        <!--<td><%= link_to 'Edit', edit_pizza_path(pizza) %></td>-->
         <td><%= link_to 'Destroy', pizza, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -32,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Pizza', new_pizza_path %>
+<%= link_to 'New Pizza', "/users/#{$us}/pizzas/new" %>

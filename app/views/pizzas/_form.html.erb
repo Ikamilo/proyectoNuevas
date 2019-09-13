@@ -33,12 +33,12 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, value: $us, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :total_price %>
-    <%= form.text_field :total_prices %>
+    <%= form.text_field :total_prices, value: $price, readonly: true %>
 <!--    <%= form.text_field :total_prices, :readonly => true, :input_html => { :value => $price }, placeholder: $price%>-->
   </div>
 

@@ -4,18 +4,21 @@ class PizzasController < ApplicationController
   # GET /pizzas
   # GET /pizzas.json
   def index
+    @pizzas = Pizza.user_id
     $price = 0
-    @pizzas = Pizza.all
+    #@pizzas = Pizza.all
   end
 
   # GET /pizzas/1
   # GET /pizzas/1.json
   def show
     calcularTotal
+    redirect_to pizzas_path
   end
 
   def calcularTotal
     pizza = Pizza.find_by(id: params[:id])
+    $pz = pizza.id
     pizza.update(total_prices: Shape.find_by(id: @pizza.shape_id).price + Sauce.find_by(id: @pizza.sauce_id).price + Size.find_by(id: @pizza.size_id).price + Flavor.find_by(id: @pizza.flavor_id).price)
     pizza.save
   end

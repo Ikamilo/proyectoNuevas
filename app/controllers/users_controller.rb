@@ -4,12 +4,28 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    #@users = User.all
+    if ((params[:login_password] != '') && (params[:login_email] != ''))
+      begin
+        if (User.find_by(email: params[:login_email]).id == User.find_by(password: params[:login_password]).id)
+          $us = User.find_by(email: params[:login_email]).id 
+          redirect_to "/users/#{User.find_by(email: params[:login_email]).id}/pizzas"
+        else
+          @aviso = 'El correo o la contraseña no son correctos'
+        end
+      rescue => exception
+        @aviso = 'El correo o la contraseña no son correctos'
+      end
+      @users = User.where('name LIKE ?', "%#{params[:login_email]}%")
+    else
+      @users = User.all
+    end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    redirect_to "/"
   end
 
   # GET /users/new
@@ -69,6 +85,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :email_confirmation, :password, :login_password, :login_email)
     end
 end
