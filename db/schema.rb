@@ -10,11 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_203935) do
+ActiveRecord::Schema.define(version: 2019_11_01_225107) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "aditions", force: :cascade do |t|
-    t.integer "pizza_id", null: false
-    t.integer "ingredient_id", null: false
+    t.bigint "pizza_id", null: false
+    t.bigint "ingredient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ingredient_id"], name: "index_aditions_on_ingredient_id"
@@ -36,11 +39,11 @@ ActiveRecord::Schema.define(version: 2019_09_10_203935) do
   end
 
   create_table "pizzas", force: :cascade do |t|
-    t.integer "shape_id", null: false
-    t.integer "sauce_id", null: false
-    t.integer "flavor_id", null: false
-    t.integer "size_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "shape_id", null: false
+    t.bigint "sauce_id", null: false
+    t.bigint "flavor_id", null: false
+    t.bigint "size_id", null: false
+    t.bigint "user_id", null: false
     t.float "total_prices"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
